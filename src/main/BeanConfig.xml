@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config/>
+
+<!--    <bean id="LoginView" class="view.LoginView"/>-->
+
+<!--    <bean id="JoinView" class="view.JoinView"/>-->
+
+    <bean id="MemberController" class="controller.MemberController"/>
+    <bean id="MemberDTO" class="model.MemberDTO"/>
+
+    <bean id="MemberDAO" class="dao.MemberDAO"/>
+
+    <bean id="MemberService" class="service.MemberService"/>
+
+    <bean id="HikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="username" value="scott"/>
+        <property name="password" value="1234"/>
+    </bean>
+    <bean id="DataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <constructor-arg ref="HikariConfig"/>
+    </bean>
+
+</beans>
